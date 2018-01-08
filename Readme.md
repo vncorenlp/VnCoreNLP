@@ -7,9 +7,9 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 * **Easy-to-use** – VnCoreNLP is wrapped into a single `.jar` file, so users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the Java API.
 
 The general architecture and experimental results of VnCoreNLP can be found in the following related papers:
-1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. [.pdf]
-2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, LREC 2018, to appear. [[.pdf]](https://arxiv.org/pdf/1709.06307.pdf)
-3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, ALTA 2017, pages 108-113. [[.pdf]](https://arxiv.org/pdf/1711.04951.pdf)
+1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*	 arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
+2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/pdf/1709.06307.pdf)
+3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.pdf]](https://arxiv.org/pdf/1711.04951.pdf)
 
 Please cite paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
