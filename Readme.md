@@ -67,3 +67,214 @@ public class VnCoreNLPExample {
 ```
 
 See VnCoreNLP's open-source in folder `src` for API details. 
+
+## Experimental results
+
+We briefly present experimental setups and obtained results in the following subsections. See details in papers [1,2,3] above.
+
+### Word segmentation 
+
+* Training data: 75k manually word-segmented training sentences from the VLSP 2013 word segmentation shared task.
+* Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
+<table>
+  <tr>
+    <td><b>Model<b></td>
+    <td><b>F1 (%)</td>
+    <td><b>Speed</b> (words/second)</td>
+  </tr>
+  <tr>
+    <td>VnCoreNLP</td>
+    <td><b>97.90</b></td>
+    <td><b>62k</b> / _</td>
+  </tr>
+  <tr>
+    <td>UETsegmenter</td>
+    <td>97.87</td>
+    <td>48k / 33k*</td>
+  </tr>
+   <tr>
+    <td>vnTokenizer</td>
+    <td>97.33</td>
+    <td> _ / 5k*</td>
+  </tr>
+   <tr>
+    <td>JVnSegmenter-Maxent</td>
+    <td>97.00</td>
+    <td> _ / 1k*</td>
+  </tr>
+   <tr>
+    <td>JVnSegmenter-CRFs</td>
+    <td>97.06</td>
+    <td> _ / 1k*</td>
+  </tr>
+   <tr>
+    <td>DongDu</td>
+    <td>96.90</td>
+    <td> _ / 17k*</td>
+  </tr>
+</table>
+
+* By default, speed is computed on a personal computer of Intel Core i7 2.2 GHz. 
+* \* denotes that the speed is computed on a personal computer of   Intel Core i5 1.80 GHz.
+* See [2] for more details.
+
+### POS tagging 
+
+* 27,870 sentences for training and development from the VLSP 2013 POS tagging shared task:
+	* 27k sentences are used for training.
+	* 870 sentences are used for development.
+* Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
+
+Results with respect to (w.r.t.) gold word segmentation:
+<table>
+    <tr>
+    <td><b>Model<b></td>
+    <td><b>Accuracy (%)</td>
+    <td><b>Speed</td>
+  </tr>
+  <tr>
+    <td>VnCoreNLP</td>
+    <td><b>95.88</b></td>
+    <td>25k</td>
+  </tr>
+  <tr>
+    <td>RDRPOSTagger</td>
+    <td>   95.11 </td>
+    <td> <b>  180k</td>
+  </tr>
+   <tr>
+    <td>BiLSTM-CRF</td>
+    <td>95.06</td>
+    <td> 3k</td>
+  </tr>
+   <tr>
+    <td>BiLSTM-CRF + CNN-char</td>
+    <td>95.40</td>
+    <td> 2.5k</td>
+  </tr>
+  <tr>
+    <td>BiLSTM-CRF + LSTM-char</td>
+    <td>95.31</td>
+    <td> 1.5k</td>
+  </tr>
+</table>
+
+* See [3] for more details.
+
+### Named entity recognition
+ * 16,861 sentences for training and development from the VLSP 2016 NER shared task:
+	* 14,861 sentences are used for training.
+	* 2k sentences are used for development.
+* Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
+* **NOTE** that the VLSP 2016 NER data also consists of **gold** POS and chunking tags as reconfirmed by VLSP 2016 organizers at [HERE](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
+	* **Gold** POS and chunking tags are NOT available in a real-world application.
+	*  In the standard representation in Vietnamese word segmentation, a word segmenter outputs a full name as a word.  
+* For a **real-world scenario**, we merge those contiguous syllables constituting a full name to form a word,  and then perform POS tagging by using our POS tagging component.
+
+Results w.r.t. gold word segmentation:
+<table>
+    <tr>
+    <td><b>Model<b></td>
+    <td><b>F1</td>
+    <td><b>Speed</td>
+  </tr>
+  <tr>
+    <td>VnCoreNLP</td>
+    <td>88.14</td>
+    <td><b>19k</td>
+  </tr>
+  <tr>
+    <td>BiLSTM-CRF</td>
+    <td>86.48</td>
+    <td> 2.8k</td>
+  </tr>
+   <tr>
+    <td>BiLSTM-CRF + CNN-char</td>
+    <td><b>88.28</td>
+    <td> 1.8k</td>
+  </tr>
+  <tr>
+    <td>BiLSTM-CRF + LSTM-char</td>
+    <td>87.71</td>
+    <td> 1.3k</td>
+  </tr>
+  <tr>
+    <td>BiLSTM-CRF + predicted POS</td>
+    <td>86.12</td>
+    <td> _ </td>
+  </tr>
+   <tr>
+    <td>BiLSTM-CRF + CNN-char + predicted POS </td>
+    <td>88.06</td>
+    <td> _</td>
+  </tr>
+  <tr>
+    <td>BiLSTM-CRF + LSTM-char + predicted POS</td>
+    <td>87.43</td>
+    <td> _ </td>
+  </tr>
+</table>
+
+* For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
+* See [1] for more details.
+
+### Dependency parsing
+
+* We use the Vietnamese dependency treebank [VnDT](http://vndp.sourceforge.net)  consisting of 10,200 sentences. We use the last 1020 sentences of VnDT for test while the remaining sentences are used for training.
+
+Results w.r.t. gold word segmentation:
+<table>
+  <tr>
+    <th colspan="2"><b>Model</b></th>
+    <th> <b>LAS</b> (%)</th>
+    <th><b>UAS</b> (%)</th>
+    <th><b>Speed</th>
+  </tr>
+  <tr>
+    <td rowspan="5">Gold POS</td>
+    <td>VnCoreNLP</td>
+    <td><b>73.39</td>
+    <td>79.02</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>BIST-bmstparser</td>
+    <td>73.17</td>
+    <td><b>79.39</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>BIST-barchybrid</td>
+    <td>72.53</td>
+    <td>79.33</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>MSTparser</td>
+    <td>70.29</td>
+    <td>76.47</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>MaltParser</td>
+    <td>69.10</td>
+    <td>74.91</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Predicted POS</td>
+    <td>VnCoreNLP</td>
+    <td><b>70.23</td>
+    <td>76.93</td>
+    <td><b>8k</td>
+  </tr>
+  <tr>
+    <td>jPTDP</td>
+    <td>69.49</td>
+    <td><b>77.68</td>
+    <td>700</td>
+  </tr>
+</table>
+
+* For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
+* See [1] for more details.
