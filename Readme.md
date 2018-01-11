@@ -8,8 +8,8 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 The general architecture and experimental results of VnCoreNLP can be found in the following related papers:
 1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*	 arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
-2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/pdf/1709.06307.pdf)
-3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.pdf]](https://arxiv.org/pdf/1711.04951.pdf)
+2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/abs/1709.06307)
+3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.pdf]](https://arxiv.org/abs/1711.04951)
 
 Please cite paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
@@ -76,6 +76,7 @@ We briefly present experimental setups and obtained results in the following sub
 
 * Training data: 75k manually word-segmented training sentences from the VLSP 2013 word segmentation shared task.
 * Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
+
 <table>
   <tr>
     <td><b>Model<b></td>
@@ -114,9 +115,8 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
 </table>
 
-* By default, speed is computed on a personal computer of Intel Core i7 2.2 GHz. 
-* \* denotes that the speed is computed on a personal computer of   Intel Core i5 1.80 GHz.
-* See [2] for more details.
+* Speed is computed on a personal computer of Intel Core i7 2.2 GHz, except when specifically mentioned. \* denotes that the speed is computed on a personal computer of   Intel Core i5 1.80 GHz.
+* See paper [2] for more details.
 
 ### POS tagging 
 
@@ -125,7 +125,6 @@ We briefly present experimental setups and obtained results in the following sub
 	* 870 sentences are used for development.
 * Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
 
-Results with respect to (w.r.t.) gold word segmentation:
 <table>
     <tr>
     <td><b>Model<b></td>
@@ -159,17 +158,17 @@ Results with respect to (w.r.t.) gold word segmentation:
   </tr>
 </table>
 
-* See [3] for more details.
+* See paper [3] for more details.
 
 ### Named entity recognition
  * 16,861 sentences for training and development from the VLSP 2016 NER shared task:
 	* 14,861 sentences are used for training.
 	* 2k sentences are used for development.
 * Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
-* **NOTE** that the VLSP 2016 NER data also consists of **gold** POS and chunking tags as reconfirmed by VLSP 2016 organizers at [HERE](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
+* **NOTE** that the original VLSP 2016 NER data also consists of **gold** POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
 	* **Gold** POS and chunking tags are NOT available in a real-world application.
 	*  In the standard representation in Vietnamese word segmentation, a word segmenter outputs a full name as a word.  
-* For a **real-world scenario**, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results w.r.t. gold word segmentation as follows:
+* For a realistic scenario, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results are as follows:
 
 <table>
     <tr>
@@ -215,13 +214,13 @@ Results with respect to (w.r.t.) gold word segmentation:
 </table>
 
 * For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
-* See [1] for more details.
+* Also note that on the __original__ VLSP 2016 NER data, VnCoreNLP obtains a F1 score at **93.2%**, which is higher than all previous published results.
+* See paper [1] for more details.
 
 ### Dependency parsing
 
 * We use the Vietnamese dependency treebank [VnDT](http://vndp.sourceforge.net)  consisting of 10,200 sentences. We use the last 1020 sentences of VnDT for test while the remaining sentences are used for training.
 
-Results w.r.t. gold word segmentation:
 <table>
   <tr>
     <th colspan="2"><b>Model</b></th>
@@ -276,4 +275,4 @@ Results w.r.t. gold word segmentation:
 </table>
 
 * For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
-* See [1] for more details.
+* See paper [1] for more details.
