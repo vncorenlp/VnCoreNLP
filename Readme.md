@@ -169,9 +169,8 @@ Results with respect to (w.r.t.) gold word segmentation:
 * **NOTE** that the VLSP 2016 NER data also consists of **gold** POS and chunking tags as reconfirmed by VLSP 2016 organizers at [HERE](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
 	* **Gold** POS and chunking tags are NOT available in a real-world application.
 	*  In the standard representation in Vietnamese word segmentation, a word segmenter outputs a full name as a word.  
-* For a **real-world scenario**, we merge those contiguous syllables constituting a full name to form a word,  and then perform POS tagging by using our POS tagging component.
+* For a **real-world scenario**, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results w.r.t. gold word segmentation as follows:
 
-Results w.r.t. gold word segmentation:
 <table>
     <tr>
     <td><b>Model<b></td>
