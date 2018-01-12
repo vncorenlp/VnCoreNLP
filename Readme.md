@@ -66,6 +66,8 @@ public class VnCoreNLPExample {
 }
 ```
 
+<img width="1552" alt="eclipse" src="https://user-images.githubusercontent.com/2412555/34871224-f412839a-f7e0-11e7-9a83-898e49647999.png">
+
 See VnCoreNLP's open-source in folder `src` for API details. 
 
 ## Experimental results
