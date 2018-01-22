@@ -56,7 +56,7 @@ public class VnCoreNLPExample {
         // ...
         
         //Write to file
-        PrintStream outputPrinter = new PrintStream("output.txt");
+        PrintStream outputPrinter = new PrintStream("output.txt", "UTF-8");
         pipeline.printToFile(annotation, outputPrinter); 
     
         // You can also get a single sentence to analyze individually 

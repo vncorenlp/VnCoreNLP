@@ -8,7 +8,9 @@ import vn.corenlp.tokenizer.Tokenizer;
 import vn.corenlp.wordsegmenter.WordSegmenter;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class VnCoreNLP {
 
@@ -50,7 +52,6 @@ public class VnCoreNLP {
 
     }
 
-
     public void printToFile(Annotation annotation, PrintStream printer) throws IOException {
         for(Sentence sentence : annotation.getSentences()) {
             printer.println(sentence.toString());
@@ -58,7 +59,7 @@ public class VnCoreNLP {
     }
 
     public void printToFile(Annotation annotation, String fileOut) throws IOException {
-        PrintStream printer = new PrintStream(fileOut);
+        PrintStream printer = new PrintStream(fileOut, "UTF-8");
         for(Sentence sentence : annotation.getSentences()) {
             printer.println(sentence.toString() + "\n");
         }
@@ -67,9 +68,9 @@ public class VnCoreNLP {
     public void annotate(Annotation annotation) throws IOException {
         List<String> rawSentences = Tokenizer.joinSentences(Tokenizer.tokenize(annotation.getRawText()));
         annotation.setSentences(new ArrayList<>());
-        for (String rawStentence : rawSentences) {
-            if (rawStentence.trim().length() > 0) {
-                Sentence sentence = new Sentence(rawStentence, wordSegmenter, posTagger, nerRecognizer, dependencyParser);
+        for (String rawSentence : rawSentences) {
+            if (rawSentence.trim().length() > 0) {
+                Sentence sentence = new Sentence(rawSentence, wordSegmenter, posTagger, nerRecognizer, dependencyParser);
                 annotation.getSentences().add(sentence);
                 annotation.getTokens().addAll(sentence.getTokens());
                 annotation.getWords().addAll(sentence.getWords());
@@ -82,30 +83,27 @@ public class VnCoreNLP {
 
     }
 
-
     public static void printUsage() {
         System.out.println("Usage: \n\t-fin inputFile (required)\n\t-fout outputFile (optional, default: inputFile.out)\n" +
-                "\t-core functionName (optional e.g., wseg,pos,ner,parse)" +
-                "\nexample: -fin sample_input.txt -fout output.txt -annotators wseg,pos,ner,parse");
+                "\t-annotators functionNames (optional, default: wseg,pos,ner,parse)" +
+                "\nExample 1: -fin sample_input.txt -fout output.txt" +
+                "\nExample 2: -fin sample_input.txt -fout output.txt -annotators wseg,pos,ner");
     }
 
     public static void processPipeline(String fileIn, String fileOut, String[] annotators) throws IOException{
 
         FileInputStream fis = new FileInputStream(new File(fileIn));
-        InputStreamReader isr = new InputStreamReader(fis);
-        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(fileOut)));
+        InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(fileOut)), "UTF-8");
 
         BufferedReader br = new BufferedReader(isr);
         VnCoreNLP pipeline = new VnCoreNLP(annotators);
         LOGGER.info("Start processing " + fileIn);
-        int tokenCount = 0;
-        Date start = new Date();
         while(br.ready()) {
             String line = br.readLine();
             if (line.trim().length() > 0) {
                 Annotation annotation = new Annotation(line);
                 pipeline.annotate(annotation);
-                tokenCount += annotation.getTokens().size();
                 osw.write(annotation.toString());
             }
         }
@@ -113,9 +111,7 @@ public class VnCoreNLP {
         isr.close();
         fis.close();
         osw.close();
-        double processingTime = (new Date().getTime() - start.getTime())/1000.0;
         LOGGER.info("Wrote output to " +  fileOut);
-//        LOGGER.info("Finished in " + (processingTime) + " seconds with speed: " + (int)(tokenCount/processingTime) + " tokens/s");
     }
 
     public static void main(String[] args) throws IOException {

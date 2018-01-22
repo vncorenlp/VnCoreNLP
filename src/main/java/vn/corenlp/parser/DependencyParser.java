@@ -1,6 +1,5 @@
 package vn.corenlp.parser;
 
-
 import edu.emory.mathcs.nlp.common.util.NLPUtils;
 import edu.emory.mathcs.nlp.component.template.NLPComponent;
 import edu.emory.mathcs.nlp.component.template.node.FeatMap;
