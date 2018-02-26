@@ -1,17 +1,18 @@
 # VnCoreNLP: A Vietnamese natural language processing toolkit
 
-VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of *word segmentation*, *POS tagging*, *named entity recognition* (NER) and *dependency parsing*:
+VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
 
-* **Accurate** – VnCoreNLP components obtain higher results than all previous published results on standard benchmark datasets.
-* **Fast** – VnCoreNLP is fast, so it can be used for dealing with large-scale data. Also it benefits users suffering from limited computation resources (e.g. users from Vietnam).
-* **Easy-to-use** – VnCoreNLP is wrapped into a single `.jar` file, so users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the Java API.
+* **ACCURATE** – VnCoreNLP components obtain higher results than all previous published results on standard benchmark datasets.
+* **FAST** – VnCoreNLP is fast, so it can be used for dealing with large-scale data.
+* **Easy-To-Use** – Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the Java API.
 
-The general architecture and experimental results of VnCoreNLP can be found in the following related papers:
+**The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
+
 1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*	 arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/abs/1709.06307)
 3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.pdf]](https://arxiv.org/abs/1711.04951)
 
-Please cite paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
+Please **CITE** paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
 VnCoreNLP is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
@@ -66,7 +67,8 @@ public class VnCoreNLPExample {
 }
 ```
 
-<img width="1552" alt="eclipse" src="https://user-images.githubusercontent.com/2412555/34871224-f412839a-f7e0-11e7-9a83-898e49647999.png">
+
+<img width="1524" alt="vncorenlpexample" src="https://user-images.githubusercontent.com/33695776/36654250-5da526d6-1b0f-11e8-95cd-748cdd5a1798.png">
 
 See VnCoreNLP's open-source in folder `src` for API details. 
 
@@ -215,7 +217,7 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
 </table>
 
-* For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
+* Here, for VnCoreNLP, we include the time POS tagging takes in the speed.
 * Also note that on the __original__ VLSP 2016 NER data, VnCoreNLP obtains a F1 score at **93.2%**, which is higher than all previous published results.
 * See paper [1] for more details.
 
@@ -276,5 +278,4 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
 </table>
 
-* For computing speed of VnCoreNLP, automatically POS tagging time is also taken into account.
 * See paper [1] for more details.
