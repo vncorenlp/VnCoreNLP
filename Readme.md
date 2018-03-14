@@ -45,7 +45,7 @@ public class VnCoreNLPExample {
         String[] annotators = {"wseg", "pos", "ner", "parse"}; 
         VnCoreNLP pipeline = new VnCoreNLP(annotators); 
     
-        String str = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây"; 
+        String str = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."; 
         Annotation annotation = new Annotation(str); 
         pipeline.annotate(annotation); 
         
@@ -57,7 +57,7 @@ public class VnCoreNLPExample {
         // ...
         
         //Write to file
-        PrintStream outputPrinter = new PrintStream("output.txt", "UTF-8");
+        PrintStream outputPrinter = new PrintStream("output.txt");
         pipeline.printToFile(annotation, outputPrinter); 
     
         // You can also get a single sentence to analyze individually 
@@ -68,7 +68,7 @@ public class VnCoreNLPExample {
 ```
 
 
-<img width="1524" alt="vncorenlpexample" src="https://user-images.githubusercontent.com/33695776/36654250-5da526d6-1b0f-11e8-95cd-748cdd5a1798.png">
+<img width="1110" alt="vncorenlpexample_acl" src="https://user-images.githubusercontent.com/33695776/37435767-cd003e7c-2838-11e8-88ef-6da5766101d0.png">
 
 See VnCoreNLP's open-source in folder `src` for API details. 
 
@@ -171,7 +171,7 @@ We briefly present experimental setups and obtained results in the following sub
 * Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
 * **NOTE** that the original VLSP 2016 NER data also consists of **gold** POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
 	* **Gold** POS and chunking tags are NOT available in a real-world application.
-	*  The standard annotation for Vietnamese word segmentation forms each full name as a word token.  
+	*  The standard annotation for Vietnamese word segmentation forms each full name as a word token, thus all  Vietnamese word segmenters have been trained to output a full name as a word.
 * For a realistic scenario, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results are as follows:
 
 <table>
