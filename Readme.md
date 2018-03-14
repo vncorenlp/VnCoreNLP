@@ -10,7 +10,7 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*	 arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/abs/1709.06307)
-3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. From Word Segmentation to POS Tagging for Vietnamese. In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.pdf]](https://arxiv.org/abs/1711.04951)
+3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. [From Word Segmentation to POS Tagging for Vietnamese](http://aclweb.org/anthology/U17-1013). In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.bib]](http://aclweb.org/anthology/U17-1013.bib)
 
 Please **CITE** paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
@@ -29,7 +29,7 @@ Assume that Java 1.8+ is already set to run in the command line or terminal (for
     // To perform word segmentation
     $ java -Xmx2g -jar VnCoreNLP-1.0.jar -fin input.txt -fout output.txt -annotators wseg    
 
-If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter) (0.3MB) and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) (30MB), resepectively.
+**NOTE** that if you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter) (0.3MB) and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) (30MB), resepectively.
 
 ## Using VnCoreNLP from the API
 
@@ -218,7 +218,6 @@ We briefly present experimental setups and obtained results in the following sub
 </table>
 
 * Here, for VnCoreNLP, we include the time POS tagging takes in the speed.
-* Also note that on the __original__ VLSP 2016 NER data, VnCoreNLP obtains a F1 score at **93.2%**, which is higher than all previous published results.
 * See paper [1] for more details.
 
 ### Dependency parsing
