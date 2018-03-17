@@ -88,7 +88,7 @@ We briefly present experimental setups and obtained results in the following sub
     <td><b>Speed</b> (words/second)</td>
   </tr>
   <tr>
-    <td>VnCoreNLP</td>
+    <td>VnCoreNLP (RDRsegmenter)</td>
     <td><b>97.90</b></td>
     <td><b>62k</b> / _</td>
   </tr>
@@ -136,7 +136,7 @@ We briefly present experimental setups and obtained results in the following sub
     <td><b>Speed</td>
   </tr>
   <tr>
-    <td>VnCoreNLP</td>
+    <td>VnCoreNLP (VnMarMot)</td>
     <td><b>95.88</b></td>
     <td>25k</td>
   </tr>
@@ -182,7 +182,7 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
   <tr>
     <td>VnCoreNLP</td>
-    <td>88.55</td>
+    <td><b>88.55</td>
     <td><b>18k</td>
   </tr>
   <tr>
@@ -192,7 +192,7 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
    <tr>
     <td>BiLSTM-CRF + CNN-char</td>
-    <td><b>88.28</td>
+    <td>88.28</td>
     <td> 1.8k</td>
   </tr>
   <tr>
