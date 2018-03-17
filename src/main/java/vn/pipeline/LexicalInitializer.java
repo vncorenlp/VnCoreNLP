@@ -26,10 +26,15 @@ public class LexicalInitializer {
 
         this.initLexica = initLexica;
         this.lexicalMap = new HashMap<>();
-        String lexicalPath = System.getProperty("user.dir") + "/models/embeddings/baomoi.model.xz";
+        
+        String lexicalPath = System.getProperty("user.dir") + "/models/ner/vi-500brownclusters.xz";
         if (!new File(lexicalPath).exists())
             throw new IOException("LexicalInitializer: " + lexicalPath + " is not found!");
-        LOGGER.info("Loading word embeddings");
+        lexicalMap.put("word_clusters", lexicalPath);
+        
+        lexicalPath = System.getProperty("user.dir") + "/models/ner/vi-pretrainedembeddings.xz";
+        if (!new File(lexicalPath).exists())
+            throw new IOException("LexicalInitializer: " + lexicalPath + " is not found!");
         lexicalMap.put("word_embeddings", lexicalPath);
     }
 

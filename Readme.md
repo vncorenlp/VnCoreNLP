@@ -182,8 +182,8 @@ We briefly present experimental setups and obtained results in the following sub
   </tr>
   <tr>
     <td>VnCoreNLP</td>
-    <td>88.14</td>
-    <td><b>19k</td>
+    <td>88.55</td>
+    <td><b>18k</td>
   </tr>
   <tr>
     <td>BiLSTM-CRF</td>
