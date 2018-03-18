@@ -2,13 +2,13 @@
 
 VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
 
-* **ACCURATE** – VnCoreNLP components obtain higher results than all previous published results on standard benchmark datasets.
+* **ACCURATE** – VnCoreNLP is the most accurate toolkit for Vietnamese NLP, obtaining state-of-the-art results on standard benchmark datasets.
 * **FAST** – VnCoreNLP is fast, so it can be used for dealing with large-scale data.
 * **Easy-To-Use** – Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the Java API.
 
 **The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
 
-1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*	 arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
+1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*   arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/abs/1709.06307)
 3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. [From Word Segmentation to POS Tagging for Vietnamese](http://aclweb.org/anthology/U17-1013). In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.bib]](http://aclweb.org/anthology/U17-1013.bib)
 
@@ -18,18 +18,18 @@ VnCoreNLP is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS O
 
 ## Using VnCoreNLP from the command line
 
-Assume that Java 1.8+ is already set to run in the command line or terminal (for example: adding Java to the  environment variable `path` in Windows OS); and file  `VnCoreNLP-1.0.jar` (27MB) and folder `models` (113MB) are placed in the same working folder. You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
+Assume that Java 1.8+ is already set to run in the command line or terminal (for example: adding Java to the  environment variable `path` in Windows OS); and file  `VnCoreNLP-1.0.1.jar` (27MB) and folder `models` (113MB) are placed in the same working folder. You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
     //To perform word segmentation, POS tagging, NER and then dependency parsing
-    $ java -Xmx2g -jar VnCoreNLP-1.0.jar -fin input.txt -fout output.txt
+    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt
     // To perform word segmentation, POS tagging and then NER
-    $ java -Xmx2g -jar VnCoreNLP-1.0.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
+    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
     // To perform word segmentation and then POS tagging
-    $ java -Xmx2g -jar VnCoreNLP-1.0.jar -fin input.txt -fout output.txt -annotators wseg,pos
+    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
     // To perform word segmentation
-    $ java -Xmx2g -jar VnCoreNLP-1.0.jar -fin input.txt -fout output.txt -annotators wseg    
+    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg    
 
-**NOTE** that if you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter) (0.3MB) and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) (30MB), resepectively.
+**NOTE** that if you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
 
 ## Using VnCoreNLP from the API
 
@@ -46,6 +46,7 @@ public class VnCoreNLPExample {
         VnCoreNLP pipeline = new VnCoreNLP(annotators); 
     
         String str = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."; 
+        
         Annotation annotation = new Annotation(str); 
         pipeline.annotate(annotation); 
         
@@ -67,8 +68,7 @@ public class VnCoreNLPExample {
 }
 ```
 
-
-<img width="1110" alt="vncorenlpexample_acl" src="https://user-images.githubusercontent.com/33695776/37435767-cd003e7c-2838-11e8-88ef-6da5766101d0.png">
+<img width="1039" alt="vncorenlpexample" src="https://user-images.githubusercontent.com/33695776/37561346-aca1fd68-2aa0-11e8-8bd8-530577b0b5cf.png">
 
 See VnCoreNLP's open-source in folder `src` for API details. 
 
@@ -88,7 +88,7 @@ We briefly present experimental setups and obtained results in the following sub
     <td><b>Speed</b> (words/second)</td>
   </tr>
   <tr>
-    <td>VnCoreNLP (RDRsegmenter)</td>
+    <td>VnCoreNLP (i.e. RDRsegmenter)</td>
     <td><b>97.90</b></td>
     <td><b>62k</b> / _</td>
   </tr>
@@ -125,8 +125,8 @@ We briefly present experimental setups and obtained results in the following sub
 ### POS tagging 
 
 * 27,870 sentences for training and development from the VLSP 2013 POS tagging shared task:
-	* 27k sentences are used for training.
-	* 870 sentences are used for development.
+  *  27k sentences are used for training.
+  *  870 sentences are used for development.
 * Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
 
 <table>
@@ -136,7 +136,7 @@ We briefly present experimental setups and obtained results in the following sub
     <td><b>Speed</td>
   </tr>
   <tr>
-    <td>VnCoreNLP (VnMarMot)</td>
+    <td>VnCoreNLP (i.e. VnMarMoT)</td>
     <td><b>95.88</b></td>
     <td>25k</td>
   </tr>
@@ -165,13 +165,13 @@ We briefly present experimental setups and obtained results in the following sub
 * See paper [3] for more details.
 
 ### Named entity recognition
- * 16,861 sentences for training and development from the VLSP 2016 NER shared task:
-	* 14,861 sentences are used for training.
-	* 2k sentences are used for development.
+* 16,861 sentences for training and development from the VLSP 2016 NER shared task:
+  *  14,861 sentences are used for training.
+  *  2k sentences are used for development.
 * Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
-* **NOTE** that the original VLSP 2016 NER data also consists of **gold** POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario: 
-	* **Gold** POS and chunking tags are NOT available in a real-world application.
-	*  The standard annotation for Vietnamese word segmentation forms each full name as a word token, thus all  Vietnamese word segmenters have been trained to output a full name as a word.
+* **NOTE** that the original VLSP 2016 NER data also consists of **gold** POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario for a pipeline evaluation: 
+  * **Gold** POS and chunking tags are NOT available in a real-world application.
+  *  The standard annotation for Vietnamese word segmentation and POS tagging forms each full name as a word token, thus all   word segmenters have been trained to output a full name as a word and all POS taggers have been trained to assign a POS label to the entire full-name.
 * For a realistic scenario, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results are as follows:
 
 <table>
