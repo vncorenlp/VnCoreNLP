@@ -8,7 +8,7 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 **The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
 
-1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. *arXiv preprint*   arXiv:1801.01331. [[.pdf]](https://arxiv.org/abs/1801.01331)
+1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. VnCoreNLP: A Vietnamese Natural Language Processing Toolkit. In 	*Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Demonstrations*, [NAACL 2018](http://naacl2018.org), to appear. [[.pdf]](https://arxiv.org/abs/1801.01331)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. A Fast and Accurate Vietnamese Word Segmenter. In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), to appear. [[.pdf]](https://arxiv.org/abs/1709.06307)
 3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. [From Word Segmentation to POS Tagging for Vietnamese](http://aclweb.org/anthology/U17-1013). In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.bib]](http://aclweb.org/anthology/U17-1013.bib)
 
