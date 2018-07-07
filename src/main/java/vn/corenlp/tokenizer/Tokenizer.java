@@ -288,7 +288,7 @@ class Regex
 
     public static final String ELLIPSIS = "\\.{2,}";
 
-    public static final String EMAIL = "([\\w\\d_\\.-]+)@(([\\d\\w-]+)\\.)*([\\d\\w-]+)";
+    public static final String EMAIL = "([\\w\\.-]+)@(([\\w-]+)\\.)*([\\w-]+)";
 
     public static final String FULL_DATE = "(0?[1-9]|[12][0-9]|3[01])(\\/|-|\\.)(1[0-2]|(0?[1-9]))((\\/|-|\\.)\\d{4})";
 
@@ -296,7 +296,7 @@ class Regex
 
     public static final String DATE = "(0?[1-9]|[12][0-9]|3[01])(\\/)(1[0-2]|(0?[1-9]))";
 
-    public static final String TIME = "(\\d\\d:\\d\\d:\\d\\d)|((0?\\d|1\\d|2[0-3])(:|h)(0?\\d|[1-5]\\d)(’|'|p|ph)?)";
+    public static final String TIME = "(\\d\\d:\\d\\d:\\d\\d)|((0?\\d|1\\d|2[0-3])(:|h)([1-5]\\d|0?\\d)(’|'|ph|pm|am|p)?)";
 
     public static final String MONEY = "\\p{Sc}\\d+([\\.,]\\d+)*|\\d+([\\.,]\\d+)*\\p{Sc}";
 
@@ -316,7 +316,7 @@ class Regex
 
     public static final String SHORT_NAME = "[\\p{Upper}]\\.([\\p{L}\\p{Upper}])*";
 
-    public static final String WORD_WITH_HYPHEN = "\\p{L}+-\\p{L}+(-\\p{L}+)*";
+    public static final String WORD_WITH_HYPHEN = "\\p{L}+(-\\p{L}+)+";
 
     public static final String ALLCAP = "[A-Z]+\\.[A-Z]+";
 

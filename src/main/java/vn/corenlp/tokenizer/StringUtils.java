@@ -58,8 +58,8 @@ public class StringUtils
     // Modified by Dat Quoc Nguyen
     public static boolean isBrace(String string)
     {
-        if (string.equals("”") || string.equals("�") || string.equals("'") || string.equals(")")
-                || string.equals("}") || string.equals("]")) {
+        if (string.equals("”") || string.equals("\"") || string.equals("�") || string.equals("’") || string.equals("'")
+            || string.equals(")") || string.equals("}") || string.equals("]")) {
             return true;
         }
         return false;
