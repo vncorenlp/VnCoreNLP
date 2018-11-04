@@ -21,7 +21,7 @@ public class WordSegmenter {
     public final static Logger LOGGER = Logger.getLogger(WordSegmenter.class);
     public WordSegmenter()
             throws IOException {
-        LOGGER.info("Loading WordSegmenter");
+        LOGGER.info("Loading Word Segmentation model");
         String modelPath = System.getProperty("user.dir") + "/models/wordsegmenter/wordsegmenter.rdr";
         if (!new File(modelPath).exists())
             throw new IOException("WordSegmenter: " + modelPath + " is not found!");

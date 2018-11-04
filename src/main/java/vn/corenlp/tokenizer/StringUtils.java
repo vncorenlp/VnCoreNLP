@@ -122,7 +122,7 @@ public class StringUtils
         VN_abbreviation.add("ThS.BS");
         VN_abbreviation.add("Gs.Ts");
         VN_abbreviation.add("SL.NA");
-        VN_abbreviation.add("P.");
+        //VN_abbreviation.add("P.");
         VN_abbreviation.add("Th.S");
         VN_abbreviation.add("Gs.Vs");
         VN_abbreviation.add("PGs.Bs");
@@ -147,7 +147,11 @@ public class StringUtils
         VN_abbreviation.add("Miss.");
         VN_abbreviation.add("GD.ĐT");
         VN_abbreviation.add("PGs.Kts");
-        VN_abbreviation.add("Q.");
+        //VN_abbreviation.add("Q.");
+        VN_abbreviation.add("St.");
+        VN_abbreviation.add("Ng.");
+        VN_abbreviation.add("Inc.");
+        VN_abbreviation.add("Th.");
         VN_abbreviation.add("N.O.V.A");
 
         VN_exception.add("Wi-fi");

@@ -52,7 +52,7 @@ public class Tokenizer {
 
 
             if (token.endsWith(".") && Character.isAlphabetic(token.charAt(token.length() - 2))) {
-                if (token.length() == 2 && Character.isUpperCase(token.charAt(token.length() - 2))) {
+                if ((token.length() == 2 && Character.isUpperCase(token.charAt(token.length() - 2))) || (Pattern.compile(Regex.SHORT_NAME).matcher(token).find())) {
                     tokens.add(token);
                     continue;
                 }
@@ -314,7 +314,7 @@ class Regex
 
     public static final String NUMBERS_EXPRESSION = NUMBER + "([\\+\\-\\*\\/]" + NUMBER + ")*";
 
-    public static final String SHORT_NAME = "[\\p{Upper}]\\.([\\p{L}\\p{Upper}])*";
+    public static final String SHORT_NAME = "([\\p{L}]+([\\.\\-][\\p{L}]+)+)|([\\p{L}]+-\\d+)";
 
     public static final String WORD_WITH_HYPHEN = "\\p{L}+-\\p{L}+(-\\p{L}+)*";
 
