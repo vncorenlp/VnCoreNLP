@@ -170,10 +170,10 @@ We briefly present experimental setups and obtained results in the following sub
   *  14,861 sentences are used for training.
   *  2k sentences are used for development.
 * Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
-* **NOTE** that the original VLSP 2016 NER data also consists of **gold** POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). Also in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. This scheme results in an unrealistic scenario for a pipeline evaluation: 
-  * **Gold** POS and chunking tags are NOT available in a real-world application.
-  *  The standard annotation for Vietnamese word segmentation and POS tagging forms each full name as a word token, thus all   word segmenters have been trained to output a full name as a word and all POS taggers have been trained to assign a POS label to the entire full-name.
-* For a realistic scenario, we merge those contiguous syllables constituting a full name to form a word. Then to obtain predicted POS tags for training, developement and test sentences, we perform POS tagging by using our tagging component. The results are as follows:
+* **NOTE** that in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. The VLSP 2016 NER data also consists of gold POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). This scheme results in an unrealistic scenario for a pipeline evaluation: 
+  * The standard annotation for Vietnamese word segmentation and POS tagging forms each full name as a word token, thus all   word segmenters have been trained to output a full name as a word and all POS taggers have been trained to assign a POS label to the entire full-name.
+  * Gold POS and chunking tags are NOT available in a real-world application.
+* For a realistic scenario, contiguous syllables constituting a full name are merged to form a word. Then,  POS tags are predicted by using our tagging component. The results are as follows:
 
 <table>
     <tr>
@@ -223,7 +223,8 @@ We briefly present experimental setups and obtained results in the following sub
 
 ### Dependency parsing
 
-* We use the Vietnamese dependency treebank [VnDT](http://vndp.sourceforge.net)  consisting of 10,200 sentences. We use the last 1020 sentences of VnDT for test while the remaining sentences are used for training.
+* The last 1020 sentences of the [benchmark Vietnamese dependency treebank VnDT](http://vndp.sourceforge.net) are used for test, while the remaining 9k+ sentences are used for training & development. LAS and UAS scores are computed on all
+tokens (i.e. including punctuation). 
 
 <table>
   <tr>
