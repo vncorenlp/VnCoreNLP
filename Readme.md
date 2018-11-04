@@ -20,16 +20,16 @@ VnCoreNLP is **free** for non-commercial use and distributed under the Creative 
 
 ## Using VnCoreNLP from the command line
 
-Assume that Java 1.8+ is already set to run in the command line or terminal (for example: adding Java to the  environment variable `path` in Windows OS); and file  `VnCoreNLP-1.0.1.jar` (27MB) and folder `models` (113MB) are placed in the same working folder. You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
+Assume that Java 1.8+ is already set to run in the command line or terminal (for example: adding Java to the  environment variable `path` in Windows OS); and file  `VnCoreNLP-1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder. You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
     //To perform word segmentation, POS tagging, NER and then dependency parsing
-    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt
+    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt
     // To perform word segmentation, POS tagging and then NER
-    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
+    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
     // To perform word segmentation and then POS tagging
-    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
+    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
     // To perform word segmentation
-    $ java -Xmx2g -jar VnCoreNLP-1.0.1.jar -fin input.txt -fout output.txt -annotators wseg    
+    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg    
 
 
 ## Using VnCoreNLP from the API
