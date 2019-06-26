@@ -16,7 +16,6 @@ Please **CITE** paper [1] whenever VnCoreNLP is used to produce published result
 
 **NOTE** that if you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
 
-VnCoreNLP is **free** for non-commercial use and distributed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International ([CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)) License. 
 
 ## Using VnCoreNLP from the command line
 
