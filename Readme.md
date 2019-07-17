@@ -11,7 +11,7 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 * **ACCURATE** – VnCoreNLP is the most accurate toolkit for Vietnamese NLP, obtaining state-of-the-art results on standard benchmark datasets.
 * **FAST** – VnCoreNLP is fast, so it can be used for dealing with large-scale data.
-* **Easy-To-Use** – Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the Java API.
+* **Easy-To-Use** – Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the  API.
 
 **The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
 
@@ -23,11 +23,13 @@ Please **CITE** paper [1] whenever VnCoreNLP is used to produce published result
 
 If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
 
+_A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating a Python wrapper of VnCoreNLP!_
+
 ## Installation <a name="install"></a>
 
-- `Python 3.4+` if using  a Python wrapper of VnCoreNLP. **A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating this wrapper**.  Then, to install the wrapper, users have to run the following command:
+- `Python 3.4+` if using the Python wrapper. To install the wrapper, users have to run the following command:
 
-    ``$ pip install vncorenlp`` 
+    ``$ pip3 install vncorenlp`` 
 
 - `Java 1.8+` 
 - File  `VnCoreNLP-1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
@@ -35,6 +37,8 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 
 ## Usage for Python users <a name="python"></a>
+
+_Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 install vncorenlp``_
 
 ### Use as a service (recommended)
 
@@ -84,7 +88,7 @@ word_segmented_text = annotator.tokenize(text)
 
 ```
 
-For more details, we refer users to [https://github.com/dnanhkhoa/python-vncorenlp](https://github.com/dnanhkhoa/python-vncorenlp).
+_For more details, we refer users to [https://github.com/dnanhkhoa/python-vncorenlp](https://github.com/dnanhkhoa/python-vncorenlp)._
 
 
 ## Usage for Java users <a name="java"></a>
