@@ -1,4 +1,11 @@
-# VnCoreNLP: A Vietnamese natural language processing toolkit
+#### Table of contents
+1. [Introduction](#introduction)
+2. [Installation](#install)
+2. [Usage for Python users](#python)
+3. [Usage for Java users](#java)
+4. [Experimental results](#exp)
+
+# VnCoreNLP: A Vietnamese natural language processing toolkit <a name="introduction"></a>
 
 VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
 
@@ -14,13 +21,11 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 Please **CITE** paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
-**NOTE** 
-- If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
-- A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating a Python wrapper of VnCoreNLP.
+If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
 
-## Installation
+## Installation <a name="install"></a>
 
-- `Python 3.4+` if using the Python wrapper. Then, to install the wrapper, users have to run the following command:
+- `Python 3.4+` if using  a Python wrapper of VnCoreNLP. **A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating this wrapper**.  Then, to install the wrapper, users have to run the following command:
 
     ``$ pip install vncorenlp`` 
 
@@ -29,7 +34,7 @@ Please **CITE** paper [1] whenever VnCoreNLP is used to produce published result
 
 
 
-## Usage for Python users
+## Usage for Python users <a name="python"></a>
 
 ### Use as a service (recommended)
 
@@ -82,7 +87,7 @@ word_segmented_text = annotator.tokenize(text)
 For more details, we refer users to [https://github.com/dnanhkhoa/python-vncorenlp](https://github.com/dnanhkhoa/python-vncorenlp).
 
 
-## Usage for Java users
+## Usage for Java users <a name="java"></a>
 
 ### Using VnCoreNLP from the command line
 
@@ -139,7 +144,7 @@ public class VnCoreNLPExample {
 
 See VnCoreNLP's open-source in folder `src` for API details. 
 
-## Experimental results
+## Experimental results <a name="exp"></a>
 
 We briefly present experimental setups and obtained results in the following subsections. See details in papers [1,2,3] above.
 
