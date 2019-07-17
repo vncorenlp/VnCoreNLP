@@ -14,12 +14,79 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 Please **CITE** paper [1] whenever VnCoreNLP is used to produce published results or incorporated into other software. If you are dealing in depth with either word segmentation or POS tagging, you are encouraged to also cite paper [2] or [3], respectively. 
 
-**NOTE** that if you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
+**NOTE** 
+- If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
+- A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating a Python wrapper of VnCoreNLP.
+
+## Installation
+
+- `Python 3.4+` if using the Python wrapper. Then, to install the wrapper, users have to run the following command:
+
+    ``$ pip install vncorenlp`` 
+
+- `Java 1.8+` 
+- File  `VnCoreNLP-1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
 
 
-## Using VnCoreNLP from the command line
 
-Assume that Java 1.8+ is already set to run in the command line or terminal (for example: adding Java to the  environment variable `path` in Windows OS); and file  `VnCoreNLP-1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder. You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
+## Usage for Python users
+
+### Use as a service (recommended)
+
+1. Run the following command: 
+
+    ``$ vncorenlp -Xmx2g <VnCoreNLP-jar-file-path> -p 9000 -a "wseg,pos,ner,parse"``
+    
+    The service is now available at ``http://127.0.0.1:9000``.
+
+2. Use the service in your `python` code:
+
+```python
+from vncorenlp import VnCoreNLP
+text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
+annotator = VnCoreNLP(address="http://127.0.0.1", port=9000) 
+annotated_text = annotator.annotate(text)   # json format
+
+# If you want to use only the word segmenter
+word_segmented_text = annotator.tokenize(text)
+```
+
+- `print(annotated_text)`
+
+```
+{'sentences': [[{'index': 1, 'form': 'Ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'sub'}, {'index': 2, 'form': 'Nguyễn_Khắc_Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': 'đang', 'posTag': 'R', 'nerLabel': 'O', 'head': 4, 'depLabel': 'adv'}, {'index': 4, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 5, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 4, 'depLabel': 'loc'}, {'index': 6, 'form': 'Đại_học', 'posTag': 'N', 'nerLabel': 'B-ORG', 'head': 5, 'depLabel': 'pob'}, {'index': 7, 'form': 'Quốc_gia', 'posTag': 'N', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 8, 'form': 'Hà_Nội', 'posTag': 'Np', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 9, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 4, 'depLabel': 'punct'}], [{'index': 1, 'form': 'Bà', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 9, 'depLabel': 'sub'}, {'index': 2, 'form': 'Lan', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 4, 'form': 'vợ', 'posTag': 'N', 'nerLabel': 'O', 'head': 1, 'depLabel': 'nmod'}, {'index': 5, 'form': 'ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'nmod'}, {'index': 6, 'form': 'Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 5, 'depLabel': 'nmod'}, {'index': 7, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 8, 'form': 'cũng', 'posTag': 'R', 'nerLabel': 'O', 'head': 9, 'depLabel': 'adv'}, {'index': 9, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 10, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 9, 'depLabel': 'loc'}, {'index': 11, 'form': 'đây', 'posTag': 'P', 'nerLabel': 'O', 'head': 10, 'depLabel': 'pob'}, {'index': 12, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 9, 'depLabel': 'punct'}]]}
+```
+
+- `print(word_segmented_text)`
+
+```
+[['Ông', 'Nguyễn_Khắc_Chúc', 'đang', 'làm_việc', 'tại', 'Đại_học', 'Quốc_gia', 'Hà_Nội', '.'], ['Bà', 'Lan', ',', 'vợ', 'ông', 'Chúc', ',', 'cũng', 'làm_việc', 'tại', 'đây', '.']]
+```
+
+
+
+
+### Use without the service
+
+```python
+from vncorenlp import VnCoreNLP
+text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
+annotator = VnCoreNLP("<VnCoreNLP-jar-file-path>") 
+annotated_text = annotator.annotate(text)   # json format
+
+# If you want to use only the word segmenter
+word_segmented_text = annotator.tokenize(text) 
+
+```
+
+For more details, we refer users to [https://github.com/dnanhkhoa/python-vncorenlp](https://github.com/dnanhkhoa/python-vncorenlp).
+
+
+## Usage for Java users
+
+### Using VnCoreNLP from the command line
+
+You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
     //To perform word segmentation, POS tagging, NER and then dependency parsing
     $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt
@@ -31,7 +98,7 @@ Assume that Java 1.8+ is already set to run in the command line or terminal (for
     $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg    
 
 
-## Using VnCoreNLP from the API
+### Using VnCoreNLP from the API
 
 The following code is a simple and complete example:
 
