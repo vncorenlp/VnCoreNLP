@@ -44,7 +44,7 @@ _Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 
 
 1. Run the following command: 
 
-    ``$ vncorenlp -Xmx2g <VnCoreNLP-jar-file-path> -p 9000 -a "wseg,pos,ner,parse"``
+    ``$ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner,parse"``
     
     The service is now available at ``http://127.0.0.1:9000``.
 
@@ -52,15 +52,19 @@ _Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 
 
 ```python
 from vncorenlp import VnCoreNLP
-text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
 annotator = VnCoreNLP(address="http://127.0.0.1", port=9000) 
-annotated_text = annotator.annotate(text)   # json format
 
-# If you want to use only the word segmenter
+# Input 
+text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
+
+# To perform word segmentation, POS tagging, NER and then dependency parsing
+annotated_text = annotator.annotate(text)   
+
+# To perform word segmentation only
 word_segmented_text = annotator.tokenize(text)
 ```
 
-- `print(annotated_text)`
+- `print(annotated_text)` # JSON format
 
 ```
 {'sentences': [[{'index': 1, 'form': 'Ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'sub'}, {'index': 2, 'form': 'Nguyễn_Khắc_Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': 'đang', 'posTag': 'R', 'nerLabel': 'O', 'head': 4, 'depLabel': 'adv'}, {'index': 4, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 5, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 4, 'depLabel': 'loc'}, {'index': 6, 'form': 'Đại_học', 'posTag': 'N', 'nerLabel': 'B-ORG', 'head': 5, 'depLabel': 'pob'}, {'index': 7, 'form': 'Quốc_gia', 'posTag': 'N', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 8, 'form': 'Hà_Nội', 'posTag': 'Np', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 9, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 4, 'depLabel': 'punct'}], [{'index': 1, 'form': 'Bà', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 9, 'depLabel': 'sub'}, {'index': 2, 'form': 'Lan', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 4, 'form': 'vợ', 'posTag': 'N', 'nerLabel': 'O', 'head': 1, 'depLabel': 'nmod'}, {'index': 5, 'form': 'ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'nmod'}, {'index': 6, 'form': 'Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 5, 'depLabel': 'nmod'}, {'index': 7, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 8, 'form': 'cũng', 'posTag': 'R', 'nerLabel': 'O', 'head': 9, 'depLabel': 'adv'}, {'index': 9, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 10, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 9, 'depLabel': 'loc'}, {'index': 11, 'form': 'đây', 'posTag': 'P', 'nerLabel': 'O', 'head': 10, 'depLabel': 'pob'}, {'index': 12, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 9, 'depLabel': 'punct'}]]}
@@ -79,11 +83,9 @@ word_segmented_text = annotator.tokenize(text)
 
 ```python
 from vncorenlp import VnCoreNLP
+annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>") 
 text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
-annotator = VnCoreNLP("<VnCoreNLP-jar-file-path>") 
-annotated_text = annotator.annotate(text)   # json format
-
-# If you want to use only the word segmenter
+annotated_text = annotator.annotate(text)
 word_segmented_text = annotator.tokenize(text) 
 
 ```
@@ -97,7 +99,7 @@ _For more details, we refer users to [https://github.com/dnanhkhoa/python-vncore
 
 You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
-    //To perform word segmentation, POS tagging, NER and then dependency parsing
+    // To perform word segmentation, POS tagging, NER and then dependency parsing
     $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt
     // To perform word segmentation, POS tagging and then NER
     $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
