@@ -2,10 +2,13 @@ package vn.corenlp.parser;
 
 import edu.emory.mathcs.nlp.common.util.NLPUtils;
 import edu.emory.mathcs.nlp.component.template.NLPComponent;
+
+import edu.emory.mathcs.nlp.component.template.lexicon.GlobalLexica;
 import edu.emory.mathcs.nlp.component.template.node.FeatMap;
 import edu.emory.mathcs.nlp.component.template.node.NLPNode;
 import edu.emory.mathcs.nlp.decode.NLPDecoder;
 import org.apache.log4j.Logger;
+import vn.pipeline.LexicalInitializer;
 import vn.pipeline.Word;
 
 import java.io.File;
@@ -28,8 +31,13 @@ public class DependencyParser {
         LOGGER.info("Loading Dependency Parsing model");
         nlpDecoder = new NLPDecoder();
         List<NLPComponent<NLPNode>> components = new ArrayList();
+
         String modelPath = System.getProperty("user.dir") + "/models/dep/vi-dep.xz";
         if (!new File(modelPath).exists()) throw new IOException("DependencyParser: " + modelPath + " is not found!");
+        GlobalLexica lexica = LexicalInitializer.initialize(true).initializeLexica();
+        if(lexica != null) {
+            components.add(lexica);
+        }
         components.add(NLPUtils.getComponent(modelPath));
         nlpDecoder.setComponents(components);
 
@@ -50,9 +58,9 @@ public class DependencyParser {
         nlpNodes[0] = new NLPNode();
         for(int i = 0; i < sentenceWords.size(); i++) {
             Word word = sentenceWords.get(i);
-            //int id, String form, String lemma, String posTag, String namentTag, FeatMap feats
+            //int id, String form, String lemma, String posTag, FeatMap feats
             nlpNodes[i + 1] = new NLPNode(word.getIndex(), word.getForm(), word.getForm(),
-                    word.getPosTag(), word.getNerLabel() == null?"O" : word.getNerLabel(), new FeatMap());
+                    word.getPosTag(), new FeatMap());
 
         }
         return nlpNodes;

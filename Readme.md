@@ -15,7 +15,7 @@ VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich lingu
 
 **The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
 
-1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. [VnCoreNLP: A Vietnamese Natural Language Processing Toolkit](http://aclweb.org/anthology/N18-5012). In 	*Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Demonstrations*, [NAACL 2018](http://naacl2018.org), pages 56-60. [[.bib]](http://aclweb.org/anthology/N18-5012.bib)
+1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. [VnCoreNLP: A Vietnamese Natural Language Processing Toolkit](http://aclweb.org/anthology/N18-5012). In  *Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Demonstrations*, [NAACL 2018](http://naacl2018.org), pages 56-60. [[.bib]](http://aclweb.org/anthology/N18-5012.bib)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. [A Fast and Accurate Vietnamese Word Segmenter](http://www.lrec-conf.org/proceedings/lrec2018/summaries/55.html). In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), pages 2582-2587. [[.bib]](https://dblp.uni-trier.de/rec/bibtex/conf/lrec/NguyenNVDJ18)
 3. Dat Quoc Nguyen, Thanh Vu, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2017**. [From Word Segmentation to POS Tagging for Vietnamese](http://aclweb.org/anthology/U17-1013). In *Proceedings of the 15th Annual Workshop of the Australasian Language Technology Association*, [ALTA 2017](http://alta2017.alta.asn.au), pages 108-113. [[.bib]](http://aclweb.org/anthology/U17-1013.bib)
 
@@ -23,22 +23,23 @@ Please **CITE** paper [1] whenever VnCoreNLP is used to produce published result
 
 If you are looking for light-weight versions, VnCoreNLP's word segmentation and POS tagging components have also been released as independent packages [RDRsegmenter](https://github.com/datquocnguyen/RDRsegmenter)  [2]  and [VnMarMoT](https://github.com/datquocnguyen/VnMarMoT) [3], resepectively.
 
-_A special thanks goes to Khoa Duong  (@dnanhkhoa) for creating a Python wrapper of VnCoreNLP!_
 
 ## Installation <a name="install"></a>
 
-- `Python 3.4+` if using the Python wrapper. To install the wrapper, users have to run the following command:
+- `Python 3.4+` if using  a Python wrapper of VnCoreNLP. To install this wrapper, users have to run the following command:
 
     ``$ pip3 install vncorenlp`` 
-
+    
+    _A special thanks goes to Khoa Duong ([@dnanhkhoa](https://github.com/dnanhkhoa)) for creating this wrapper!_
+    
 - `Java 1.8+` 
-- File  `VnCoreNLP-1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
+- File  `VnCoreNLP-1.1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
 
 
 
 ## Usage for Python users <a name="python"></a>
 
-_Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 install vncorenlp``_
+**Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 install vncorenlp``**
 
 ### Use as a service (recommended)
 
@@ -100,13 +101,13 @@ _For more details, we refer users to [https://github.com/dnanhkhoa/python-vncore
 You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
     // To perform word segmentation, POS tagging, NER and then dependency parsing
-    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt
+    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt
     // To perform word segmentation, POS tagging and then NER
-    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
+    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
     // To perform word segmentation and then POS tagging
-    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
+    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
     // To perform word segmentation
-    $ java -Xmx2g -jar VnCoreNLP-1.1.jar -fin input.txt -fout output.txt -annotators wseg    
+    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg    
 
 
 ### Using VnCoreNLP from the API
@@ -152,7 +153,7 @@ See VnCoreNLP's open-source in folder `src` for API details.
 
 ## Experimental results <a name="exp"></a>
 
-We briefly present experimental setups and obtained results in the following subsections. See details in papers [1,2,3] above.
+We briefly present experimental setups and obtained results in the following subsections. See details in papers [1,2,3] above or at [NLP-progress](http://nlpprogress.com/vietnamese/vietnamese.html).
 
 ### Word segmentation 
 
