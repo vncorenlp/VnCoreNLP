@@ -7,7 +7,7 @@
 
 # VnCoreNLP: A Vietnamese natural language processing toolkit <a name="introduction"></a>
 
-VnCoreNLP is a Java NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
+VnCoreNLP is an NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
 
 * **ACCURATE** – VnCoreNLP is the most accurate toolkit for Vietnamese NLP, obtaining state-of-the-art results on standard benchmark datasets.
 * **FAST** – VnCoreNLP is fast, so it can be used for dealing with large-scale data.
@@ -84,9 +84,15 @@ word_segmented_text = annotator.tokenize(text)
 
 ```python
 from vncorenlp import VnCoreNLP
-annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>") 
+annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos,ner,parse", max_heap_size='-Xmx2g') 
+
+# Input 
 text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
+
+# To perform word segmentation, POS tagging, NER and then dependency parsing
 annotated_text = annotator.annotate(text)
+
+# To perform word segmentation only
 word_segmented_text = annotator.tokenize(text) 
 
 ```
