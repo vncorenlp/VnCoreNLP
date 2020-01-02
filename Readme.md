@@ -41,7 +41,7 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 **Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 install vncorenlp``**
 
-### Use as a service (recommended)
+### Use as a service
 
 1. Run the following command: 
 
