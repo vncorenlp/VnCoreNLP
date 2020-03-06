@@ -28,7 +28,7 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 - `Python 3.4+` if using  a Python wrapper of VnCoreNLP. To install this wrapper, users have to run the following command:
 
-    ``$ pip3 install vncorenlp`` 
+    `$ pip3 install vncorenlp` 
     
     _A special thanks goes to Khoa Duong ([@dnanhkhoa](https://github.com/dnanhkhoa)) for creating this wrapper!_
     
@@ -39,15 +39,24 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Usage for Python users <a name="python"></a>
 
-**Assume that the Python wrapper of VnCoreNLP is already installed via: ``$ pip3 install vncorenlp``**
+**Assume that the Python wrapper of VnCoreNLP is already installed via: `$ pip3 install vncorenlp`**
 
 ### Use as a service
 
 1. Run the following command: 
-
-    ``$ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner,parse"``
+```
+    # To perform word segmentation, POS tagging, NER and then dependency parsing
+    $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner,parse"
     
-    The service is now available at ``http://127.0.0.1:9000``.
+    # To perform word segmentation, POS tagging and then NER
+    # $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner"
+    # To perform word segmentation and then POS tagging
+    # $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos"
+    # To perform word segmentation only
+    # $ vncorenlp -Xmx500m <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg"
+```
+
+   The service is now available at `http://127.0.0.1:9000`.
 
 2. Use the service in your `python` code:
 
@@ -84,8 +93,17 @@ word_segmented_text = annotator.tokenize(text)
 
 ```python
 from vncorenlp import VnCoreNLP
+
+# To perform word segmentation, POS tagging, NER and then dependency parsing
 annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos,ner,parse", max_heap_size='-Xmx2g') 
 
+# To perform word segmentation, POS tagging and then NER
+# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos,ner", max_heap_size='-Xmx2g') 
+# To perform word segmentation and then POS tagging
+# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos", max_heap_size='-Xmx2g') 
+# To perform word segmentation only
+# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg", max_heap_size='-Xmx500m') 
+    
 # Input 
 text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
 
