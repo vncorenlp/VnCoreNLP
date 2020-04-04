@@ -3,15 +3,15 @@ package vn.corenlp.postagger;
 import marmot.morph.MorphTagger;
 import marmot.morph.Sentence;
 import marmot.morph.Word;
-
-import marmot.util.FileUtils;
 import org.apache.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 public class PosTagger {
     private static PosTagger posTagger = null;
@@ -19,9 +19,8 @@ public class PosTagger {
     public final static Logger LOGGER = Logger.getLogger(PosTagger.class);
     public PosTagger() throws IOException {
         LOGGER.info("Loading POS Tagging model");
-        String modelPath = System.getProperty("user.dir") + "/models/postagger/vi-tagger";
-        if (!new File(modelPath).exists()) throw new IOException("PosTagger: " + modelPath + " is not found!");
-        tagger = FileUtils.loadFromFile(modelPath);
+
+        tagger = loadModel();
 
     }
 
@@ -59,5 +58,23 @@ public class PosTagger {
         return output;
     }
 
+    private MorphTagger loadModel() throws IOException {
+        InputStream taggerInputStream = PosTagger.class.getClassLoader().getResourceAsStream("postagger/vi-tagger");
 
+        if (null == taggerInputStream) {
+            throw new IOException("Unable to load postagger/vi-tagger");
+        }
+
+        ObjectInputStream stream = new ObjectInputStream(new GZIPInputStream(taggerInputStream));
+        Object object = null;
+        try {
+            object = stream.readObject();
+        } catch (ClassNotFoundException e) {
+            throw new IOException("Unable to load tagger model", e);
+        } finally {
+            stream.close();
+        }
+
+        return (MorphTagger) object;
+    }
 }

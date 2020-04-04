@@ -1,7 +1,6 @@
 package vn.pipeline;
 
 import edu.emory.mathcs.nlp.component.template.lexicon.GlobalLexica;
-
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,16 +25,9 @@ public class LexicalInitializer {
 
         this.initLexica = initLexica;
         this.lexicalMap = new HashMap<>();
-        
-        String lexicalPath = System.getProperty("user.dir") + "/models/ner/vi-500brownclusters.xz";
-        if (!new File(lexicalPath).exists())
-            throw new IOException("LexicalInitializer: " + lexicalPath + " is not found!");
-        lexicalMap.put("word_clusters", lexicalPath);
-        
-        lexicalPath = System.getProperty("user.dir") + "/models/ner/vi-pretrainedembeddings.xz";
-        if (!new File(lexicalPath).exists())
-            throw new IOException("LexicalInitializer: " + lexicalPath + " is not found!");
-        lexicalMap.put("word_embeddings", lexicalPath);
+
+        lexicalMap.put("word_clusters", "ner/vi-500brownclusters.xz");
+        lexicalMap.put("word_embeddings", "ner/vi-pretrainedembeddings.xz");
     }
 
     public static LexicalInitializer initialize(boolean initLexica) throws IOException {

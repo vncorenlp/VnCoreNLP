@@ -3,11 +3,10 @@ package vn.corenlp.wordsegmenter;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,14 +18,8 @@ public class WordSegmenter {
     private  Node root;
     private static WordSegmenter wordSegmenter = null;
     public final static Logger LOGGER = Logger.getLogger(WordSegmenter.class);
-    public WordSegmenter()
-            throws IOException {
-        LOGGER.info("Loading Word Segmentation model");
-        String modelPath = System.getProperty("user.dir") + "/models/wordsegmenter/wordsegmenter.rdr";
-        if (!new File(modelPath).exists())
-            throw new IOException("WordSegmenter: " + modelPath + " is not found!");
-
-        this.constructTreeFromRulesFile(modelPath);
+    public WordSegmenter() throws IOException {
+        this.constructTreeFromRulesFile();
     }
 
     public static WordSegmenter initialize() throws IOException {
@@ -35,10 +28,18 @@ public class WordSegmenter {
         }
         return wordSegmenter;
     }
-    private void constructTreeFromRulesFile(String rulesFilePath)
-            throws IOException {
+    private void constructTreeFromRulesFile() throws IOException {
+        LOGGER.info("Loading Word Segmentation model");
+
+        InputStream rulesInputStream = WordSegmenter.class.getClassLoader().getResourceAsStream("wordsegmenter/wordsegmenter.rdr");
+
+        if (null == rulesInputStream) {
+            throw new IOException("WordSegmenter: wordsegmenter/wordsegmenter.rdr is not found!");
+        }
+
         BufferedReader buffer = new BufferedReader(
-                new InputStreamReader(new FileInputStream(new File(rulesFilePath)), "UTF-8"));
+            new InputStreamReader(rulesInputStream, StandardCharsets.UTF_8)
+        );
         String line = buffer.readLine();
 
         this.root = new Node(new FWObject(false), "NN", null, null, null, 0);

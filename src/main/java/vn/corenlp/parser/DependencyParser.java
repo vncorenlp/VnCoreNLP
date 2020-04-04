@@ -2,7 +2,6 @@ package vn.corenlp.parser;
 
 import edu.emory.mathcs.nlp.common.util.NLPUtils;
 import edu.emory.mathcs.nlp.component.template.NLPComponent;
-
 import edu.emory.mathcs.nlp.component.template.lexicon.GlobalLexica;
 import edu.emory.mathcs.nlp.component.template.node.FeatMap;
 import edu.emory.mathcs.nlp.component.template.node.NLPNode;
@@ -11,8 +10,8 @@ import org.apache.log4j.Logger;
 import vn.pipeline.LexicalInitializer;
 import vn.pipeline.Word;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +31,18 @@ public class DependencyParser {
         nlpDecoder = new NLPDecoder();
         List<NLPComponent<NLPNode>> components = new ArrayList();
 
-        String modelPath = System.getProperty("user.dir") + "/models/dep/vi-dep.xz";
-        if (!new File(modelPath).exists()) throw new IOException("DependencyParser: " + modelPath + " is not found!");
+        InputStream depInputStream = DependencyParser.class.getClassLoader().getResourceAsStream("dep/vi-dep.xz");
+
+        if (null == depInputStream) {
+            throw new IOException("DependencyParser: dep/vi-dep.xz is not found!");
+        }
+
         GlobalLexica lexica = LexicalInitializer.initialize(true).initializeLexica();
         if(lexica != null) {
             components.add(lexica);
         }
-        components.add(NLPUtils.getComponent(modelPath));
+
+        components.add(NLPUtils.getComponent(depInputStream));
         nlpDecoder.setComponents(components);
 
     }
