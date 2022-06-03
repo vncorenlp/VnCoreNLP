@@ -7,13 +7,7 @@
 
 # VnCoreNLP: A Vietnamese natural language processing toolkit <a name="introduction"></a>
 
-VnCoreNLP is an NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**:
-
-* **ACCURATE** – VnCoreNLP is the most accurate toolkit for Vietnamese NLP, obtaining state-of-the-art results on standard benchmark datasets.
-* **FAST** – VnCoreNLP is fast, so it can be used for dealing with large-scale data.
-* **Easy-To-Use** – Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the  API.
-
-**The general architecture and experimental results of VnCoreNLP can be found in the following related papers:**
+VnCoreNLP is a **fast and accurate** NLP annotation pipeline for Vietnamese, providing rich linguistic annotations through key NLP components of **word segmentation**, **POS tagging**, **named entity recognition** (NER) and **dependency parsing**. Users do not have to install external dependencies. Users can run processing pipelines from either the command-line or the  API. The general architecture and experimental results of VnCoreNLP can be found in the following related papers:
 
 1. Thanh Vu, Dat Quoc Nguyen, Dai Quoc Nguyen, Mark Dras and Mark Johnson. **2018**. [VnCoreNLP: A Vietnamese Natural Language Processing Toolkit](http://aclweb.org/anthology/N18-5012). In  *Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Demonstrations*, [NAACL 2018](http://naacl2018.org), pages 56-60. [[.bib]](http://aclweb.org/anthology/N18-5012.bib)
 2. Dat Quoc Nguyen, Dai Quoc Nguyen, Thanh Vu, Mark Dras and Mark Johnson. **2018**. [A Fast and Accurate Vietnamese Word Segmenter](http://www.lrec-conf.org/proceedings/lrec2018/summaries/55.html). In *Proceedings of the 11th International Conference on Language Resources and Evaluation*, [LREC 2018](http://lrec2018.lrec-conf.org/en/), pages 2582-2587. [[.bib]](https://dblp.uni-trier.de/rec/bibtex/conf/lrec/NguyenNVDJ18)
@@ -26,7 +20,7 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Installation <a name="install"></a>
 
-- `Python 3.4+` if using  a Python wrapper of VnCoreNLP. To install this wrapper, users have to run the following command:
+- `Python 3.4+` if using [a Python wrapper of VnCoreNLP](https://github.com/dnanhkhoa/python-vncorenlp). To install this wrapper, users have to run the following command:
 
     `$ pip3 install vncorenlp` 
     
@@ -39,7 +33,7 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Usage for Python users <a name="python"></a>
 
-**Assume that the Python wrapper of VnCoreNLP is already installed via: `$ pip3 install vncorenlp`**
+Assume that the Python wrapper of VnCoreNLP is already installed via: `$ pip3 install vncorenlp`
 
 ### Use as a service
 
@@ -115,8 +109,6 @@ word_segmented_text = annotator.tokenize(text)
 
 ```
 
-_For more details, we refer users to [https://github.com/dnanhkhoa/python-vncorenlp](https://github.com/dnanhkhoa/python-vncorenlp)._
-
 
 ## Usage for Java users <a name="java"></a>
 
@@ -177,208 +169,5 @@ See VnCoreNLP's open-source in folder `src` for API details.
 
 ## Experimental results <a name="exp"></a>
 
-We briefly present experimental setups and obtained results in the following subsections. See details in papers [1,2,3] above or at [NLP-progress](http://nlpprogress.com/vietnamese/vietnamese.html).
+See details in papers [1,2,3] above or at [NLP-progress](http://nlpprogress.com/vietnamese/vietnamese.html).
 
-### Word segmentation 
-
-* Training data: 75k manually word-segmented training sentences from the VLSP 2013 word segmentation shared task.
-* Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
-
-<table>
-  <tr>
-    <td><b>Model<b></td>
-    <td><b>F1 (%)</td>
-    <td><b>Speed</b> (words/second)</td>
-  </tr>
-  <tr>
-    <td>VnCoreNLP (i.e. RDRsegmenter)</td>
-    <td><b>97.90</b></td>
-    <td><b>62k</b> / _</td>
-  </tr>
-  <tr>
-    <td>UETsegmenter</td>
-    <td>97.87</td>
-    <td>48k / 33k*</td>
-  </tr>
-   <tr>
-    <td>vnTokenizer</td>
-    <td>97.33</td>
-    <td> _ / 5k*</td>
-  </tr>
-   <tr>
-    <td>JVnSegmenter-Maxent</td>
-    <td>97.00</td>
-    <td> _ / 1k*</td>
-  </tr>
-   <tr>
-    <td>JVnSegmenter-CRFs</td>
-    <td>97.06</td>
-    <td> _ / 1k*</td>
-  </tr>
-   <tr>
-    <td>DongDu</td>
-    <td>96.90</td>
-    <td> _ / 17k*</td>
-  </tr>
-</table>
-
-* Speed is computed on a personal computer of Intel Core i7 2.2 GHz, except when specifically mentioned. \* denotes that the speed is computed on a personal computer of   Intel Core i5 1.80 GHz.
-* See paper [2] for more details.
-
-### POS tagging 
-
-* 27,870 sentences for training and development from the VLSP 2013 POS tagging shared task:
-  *  27k sentences are used for training.
-  *  870 sentences are used for development.
-* Test data: 2120 test sentences from the VLSP 2013 POS tagging shared task.
-
-<table>
-    <tr>
-    <td><b>Model<b></td>
-    <td><b>Accuracy (%)</td>
-    <td><b>Speed</td>
-  </tr>
-  <tr>
-    <td>VnCoreNLP (i.e. VnMarMoT)</td>
-    <td><b>95.88</b></td>
-    <td>25k</td>
-  </tr>
-  <tr>
-    <td>RDRPOSTagger</td>
-    <td>   95.11 </td>
-    <td> <b>  180k</td>
-  </tr>
-   <tr>
-    <td>BiLSTM-CRF</td>
-    <td>95.06</td>
-    <td> 3k</td>
-  </tr>
-   <tr>
-    <td>BiLSTM-CRF + CNN-char</td>
-    <td>95.40</td>
-    <td> 2.5k</td>
-  </tr>
-  <tr>
-    <td>BiLSTM-CRF + LSTM-char</td>
-    <td>95.31</td>
-    <td> 1.5k</td>
-  </tr>
-</table>
-
-* See paper [3] for more details.
-
-### Named entity recognition
-* 16,861 sentences for training and development from the VLSP 2016 NER shared task:
-  *  14,861 sentences are used for training.
-  *  2k sentences are used for development.
-* Test data: 2,831 test sentences from the VLSP 2016 NER  shared task.
-* **NOTE** that in the VLSP 2016 NER data, each word representing a full personal name are separated into syllables that constitute the word. The VLSP 2016 NER data also consists of gold POS and chunking tags as [reconfirmed by VLSP 2016 organizers](https://drive.google.com/file/d/1XzrgPw13N4C_B6yrQy_7qIxl8Bqf7Uqi/view?usp=sharing). This scheme results in an unrealistic scenario for a pipeline evaluation: 
-  * The standard annotation for Vietnamese word segmentation and POS tagging forms each full name as a word token, thus all   word segmenters have been trained to output a full name as a word and all POS taggers have been trained to assign a POS label to the entire full-name.
-  * Gold POS and chunking tags are NOT available in a real-world application.
-* For a realistic scenario, contiguous syllables constituting a full name are merged to form a word. Then,  POS tags are predicted by using our tagging component. The results are as follows:
-
-<table>
-    <tr>
-    <td><b>Model<b></td>
-    <td><b>F1</td>
-    <td><b>Speed</td>
-  </tr>
-  <tr>
-    <td>VnCoreNLP</td>
-    <td><b>88.55</td>
-    <td><b>18k</td>
-  </tr>
-  <tr>
-    <td>BiLSTM-CRF</td>
-    <td>86.48</td>
-    <td> 2.8k</td>
-  </tr>
-   <tr>
-    <td>BiLSTM-CRF + CNN-char</td>
-    <td>88.28</td>
-    <td> 1.8k</td>
-  </tr>
-  <tr>
-    <td>BiLSTM-CRF + LSTM-char</td>
-    <td>87.71</td>
-    <td> 1.3k</td>
-  </tr>
-  <tr>
-    <td>BiLSTM-CRF + predicted POS</td>
-    <td>86.12</td>
-    <td> _ </td>
-  </tr>
-   <tr>
-    <td>BiLSTM-CRF + CNN-char + predicted POS </td>
-    <td>88.06</td>
-    <td> _</td>
-  </tr>
-  <tr>
-    <td>BiLSTM-CRF + LSTM-char + predicted POS</td>
-    <td>87.43</td>
-    <td> _ </td>
-  </tr>
-</table>
-
-* Here, for VnCoreNLP, we include the time POS tagging takes in the speed.
-* See paper [1] for more details.
-
-### Dependency parsing
-
-* The last 1020 sentences of the [benchmark Vietnamese dependency treebank VnDT](http://vndp.sourceforge.net) are used for test, while the remaining 9k+ sentences are used for training & development. LAS and UAS scores are computed on all
-tokens (i.e. including punctuation). 
-
-<table>
-  <tr>
-    <th colspan="2"><b>Model</b></th>
-    <th> <b>LAS</b> (%)</th>
-    <th><b>UAS</b> (%)</th>
-    <th><b>Speed</th>
-  </tr>
-  <tr>
-    <td rowspan="5">Gold POS</td>
-    <td>VnCoreNLP</td>
-    <td><b>73.39</td>
-    <td>79.02</td>
-    <td>_</td>
-  </tr>
-  <tr>
-    <td>BIST-bmstparser</td>
-    <td>73.17</td>
-    <td><b>79.39</td>
-    <td>_</td>
-  </tr>
-  <tr>
-    <td>BIST-barchybrid</td>
-    <td>72.53</td>
-    <td>79.33</td>
-    <td>_</td>
-  </tr>
-  <tr>
-    <td>MSTparser</td>
-    <td>70.29</td>
-    <td>76.47</td>
-    <td>_</td>
-  </tr>
-  <tr>
-    <td>MaltParser</td>
-    <td>69.10</td>
-    <td>74.91</td>
-    <td>_</td>
-  </tr>
-  <tr>
-    <td rowspan="2">Predicted POS</td>
-    <td>VnCoreNLP</td>
-    <td><b>70.23</td>
-    <td>76.93</td>
-    <td><b>8k</td>
-  </tr>
-  <tr>
-    <td>jPTDP</td>
-    <td>69.49</td>
-    <td><b>77.68</td>
-    <td>700</td>
-  </tr>
-</table>
-
-* See paper [1] for more details.
