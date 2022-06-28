@@ -20,11 +20,11 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Installation <a name="install"></a>
 
-- `Python 3.4+` if using [a Python wrapper of VnCoreNLP](https://github.com/dnanhkhoa/python-vncorenlp). To install this wrapper, users have to run the following command:
+- `Python 3.4+` if using [a Python wrapper of VnCoreNLP](https://github.com/thelinhbkhn2014/VnCoreNLP_Wrapper). To install this wrapper, users have to run the following command:
 
     `$ pip3 install vncorenlp` 
     
-    _A special thanks goes to Khoa Duong ([@dnanhkhoa](https://github.com/dnanhkhoa)) for creating this wrapper!_
+    _A special thanks goes to [Linh The Nguyen](https://github.com/thelinhbkhn2014) for creating this wrapper!_
     
 - `Java 1.8+` 
 - File  `VnCoreNLP-1.1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
@@ -33,81 +33,49 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Usage for Python users <a name="python"></a>
 
-Assume that the Python wrapper of VnCoreNLP is already installed via: `$ pip3 install vncorenlp`
-
-### Use as a service
-
-1. Run the following command: 
-```
-    # To perform word segmentation, POS tagging, NER and then dependency parsing
-    $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner,parse"
-    
-    # To perform word segmentation, POS tagging and then NER
-    # $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos,ner"
-    # To perform word segmentation and then POS tagging
-    # $ vncorenlp -Xmx2g <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg,pos"
-    # To perform word segmentation only
-    # $ vncorenlp -Xmx500m <FULL-PATH-to-VnCoreNLP-jar-file> -p 9000 -a "wseg"
-```
-
-   The service is now available at `http://127.0.0.1:9000`.
-
-2. Use the service in your `python` code:
 
 ```python
-from vncorenlp import VnCoreNLP
-annotator = VnCoreNLP(address="http://127.0.0.1", port=9000) 
+import py_vncorenlp
 
-# Input 
-text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
+# Automatically download VnCoreNLP models from the original repository
+# and save them in some local machine folder
+py_vncorenlp.download_model(save_dir='./vncorenlp')
 
-# To perform word segmentation, POS tagging, NER and then dependency parsing
-annotated_text = annotator.annotate(text)   
+# Load VnCoreNLP from the local machine folder containing the VnCoreNLP models
+model = py_vncorenlp.VnCoreNLP(save_dir='./vncorenlp')
+# Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='./vncorenlp')
 
-# To perform word segmentation only
-word_segmented_text = annotator.tokenize(text)
+# Annotate a raw corpus
+model.annotate_file(input_file="path_to_input_file", output_file="path_to_output_file")
+
+# Annotate a raw sentence
+model.print_out(model.annotate_text("Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội."))
 ```
 
-- `print(annotated_text)` # JSON format
+By default, the output is formatted with 6 columns representing word index, word form, POS tag, NER label, head index of the current word and its dependency relation type:
 
 ```
-{'sentences': [[{'index': 1, 'form': 'Ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'sub'}, {'index': 2, 'form': 'Nguyễn_Khắc_Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': 'đang', 'posTag': 'R', 'nerLabel': 'O', 'head': 4, 'depLabel': 'adv'}, {'index': 4, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 5, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 4, 'depLabel': 'loc'}, {'index': 6, 'form': 'Đại_học', 'posTag': 'N', 'nerLabel': 'B-ORG', 'head': 5, 'depLabel': 'pob'}, {'index': 7, 'form': 'Quốc_gia', 'posTag': 'N', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 8, 'form': 'Hà_Nội', 'posTag': 'Np', 'nerLabel': 'I-ORG', 'head': 6, 'depLabel': 'nmod'}, {'index': 9, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 4, 'depLabel': 'punct'}], [{'index': 1, 'form': 'Bà', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 9, 'depLabel': 'sub'}, {'index': 2, 'form': 'Lan', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 1, 'depLabel': 'nmod'}, {'index': 3, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 4, 'form': 'vợ', 'posTag': 'N', 'nerLabel': 'O', 'head': 1, 'depLabel': 'nmod'}, {'index': 5, 'form': 'ông', 'posTag': 'Nc', 'nerLabel': 'O', 'head': 4, 'depLabel': 'nmod'}, {'index': 6, 'form': 'Chúc', 'posTag': 'Np', 'nerLabel': 'B-PER', 'head': 5, 'depLabel': 'nmod'}, {'index': 7, 'form': ',', 'posTag': 'CH', 'nerLabel': 'O', 'head': 1, 'depLabel': 'punct'}, {'index': 8, 'form': 'cũng', 'posTag': 'R', 'nerLabel': 'O', 'head': 9, 'depLabel': 'adv'}, {'index': 9, 'form': 'làm_việc', 'posTag': 'V', 'nerLabel': 'O', 'head': 0, 'depLabel': 'root'}, {'index': 10, 'form': 'tại', 'posTag': 'E', 'nerLabel': 'O', 'head': 9, 'depLabel': 'loc'}, {'index': 11, 'form': 'đây', 'posTag': 'P', 'nerLabel': 'O', 'head': 10, 'depLabel': 'pob'}, {'index': 12, 'form': '.', 'posTag': 'CH', 'nerLabel': 'O', 'head': 9, 'depLabel': 'punct'}]]}
+1       Ông     Nc      O       4       sub
+2       Nguyễn_Khắc_Chúc        Np      B-PER   1       nmod
+3       đang    R       O       4       adv
+4       làm_việc        V       O       0       root
+5       tại     E       O       4       loc
+6       Đại_học N       B-ORG   5       pob
+7       Quốc_gia        N       I-ORG   6       nmod
+8       Hà_Nội  Np      I-ORG   6       nmod
+9       .       CH      O       4       punct
 ```
 
-- `print(word_segmented_text)`
-
-```
-[['Ông', 'Nguyễn_Khắc_Chúc', 'đang', 'làm_việc', 'tại', 'Đại_học', 'Quốc_gia', 'Hà_Nội', '.'], ['Bà', 'Lan', ',', 'vợ', 'ông', 'Chúc', ',', 'cũng', 'làm_việc', 'tại', 'đây', '.']]
-```
-
-
-
-
-### Use without the service
+For users who use VnCoreNLP only for word segmentation:
 
 ```python
-from vncorenlp import VnCoreNLP
-
-# To perform word segmentation, POS tagging, NER and then dependency parsing
-annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos,ner,parse", max_heap_size='-Xmx2g') 
-
-# To perform word segmentation, POS tagging and then NER
-# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos,ner", max_heap_size='-Xmx2g') 
-# To perform word segmentation and then POS tagging
-# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg,pos", max_heap_size='-Xmx2g') 
-# To perform word segmentation only
-# annotator = VnCoreNLP("<FULL-PATH-to-VnCoreNLP-jar-file>", annotators="wseg", max_heap_size='-Xmx500m') 
-    
-# Input 
-text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
-
-# To perform word segmentation, POS tagging, NER and then dependency parsing
-annotated_text = annotator.annotate(text)
-
-# To perform word segmentation only
-word_segmented_text = annotator.tokenize(text) 
-
+rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir='./vncorenlp')
+text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội."
+output = rdrsegmenter.word_segment(text)
+print(output)
+# "Ông Nguyễn_Khắc_Chúc đang làm_việc tại Đại_học Quốc_gia Hà_Nội ."
 ```
+
 
 
 ## Usage for Java users <a name="java"></a>
