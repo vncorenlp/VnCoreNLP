@@ -20,9 +20,9 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Installation <a name="install"></a>
 
-- `Python 3.4+` if using [a Python wrapper of VnCoreNLP](https://github.com/thelinhbkhn2014/VnCoreNLP_Wrapper). To install this wrapper, users have to run the following command:
+- `Python 3.6+` if using [a Python wrapper of VnCoreNLP](https://github.com/thelinhbkhn2014/VnCoreNLP_Wrapper). To install this wrapper, users have to run the following command:
 
-    `$ pip3 install vncorenlp` 
+    `$ pip3 install py_vncorenlp` 
     
     _A special thanks goes to [Linh The Nguyen](https://github.com/thelinhbkhn2014) for creating this wrapper!_
     
