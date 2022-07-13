@@ -36,16 +36,16 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 ```python
 import py_vncorenlp
 
-# Automatically download VnCoreNLP models from the original repository
+# Automatically download VnCoreNLP components from the original repository
 # and save them in some local machine folder
-py_vncorenlp.download_model(save_dir='./vncorenlp')
+py_vncorenlp.download_model(save_dir='/absolute/path/to/vncorenlp')
 
-# Load VnCoreNLP from the local machine folder containing the VnCoreNLP models
-model = py_vncorenlp.VnCoreNLP(save_dir='./vncorenlp')
-# Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='./vncorenlp')
+# Load VnCoreNLP
+model = py_vncorenlp.VnCoreNLP(save_dir='/absolute/path/to/vncorenlp')
+# Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='/absolute/path/to/vncorenlp')
 
 # Annotate a raw corpus
-model.annotate_file(input_file="path_to_input_file", output_file="path_to_output_file")
+model.annotate_file(input_file="/absolute/path/to/input/file", output_file="/absolute/path/to/output/file")
 
 # Annotate a raw text
 model.print_out(model.annotate_text("Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."))
@@ -66,7 +66,7 @@ By default, the output is formatted with 6 columns representing word index, word
 For users who use VnCoreNLP only for word segmentation:
 
 ```python
-rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir='./vncorenlp')
+rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir='/absolute/path/to/vncorenlp')
 text = "Ông Nguyễn Khắc Chúc  đang làm việc tại Đại học Quốc gia Hà Nội. Bà Lan, vợ ông Chúc, cũng làm việc tại đây."
 output = rdrsegmenter.word_segment(text)
 print(output)
