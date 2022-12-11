@@ -20,27 +20,25 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 
 ## Installation <a name="install"></a>
 
+- `Java 1.8+` (Prerequisite)
+- File  `VnCoreNLP-1.1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
 - `Python 3.6+` if using [a Python wrapper of VnCoreNLP](https://github.com/thelinhbkhn2014/VnCoreNLP_Wrapper). To install this wrapper, users have to run the following command:
 
     `$ pip3 install py_vncorenlp` 
     
     _A special thanks goes to [Linh The Nguyen](https://github.com/thelinhbkhn2014) for creating this wrapper!_
     
-- `Java 1.8+` 
-- File  `VnCoreNLP-1.1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
-
-
-
+    
 ## Usage for Python users <a name="python"></a>
 
 ```python
 import py_vncorenlp
 
 # Automatically download VnCoreNLP components from the original repository
-# and save them in some local machine folder
+# and save them in some local working folder
 py_vncorenlp.download_model(save_dir='/absolute/path/to/vncorenlp')
 
-# Load VnCoreNLP
+# Load VnCoreNLP from the local working folder that contains both `VnCoreNLP-1.1.1.jar` and `models` 
 model = py_vncorenlp.VnCoreNLP(save_dir='/absolute/path/to/vncorenlp')
 # Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='/absolute/path/to/vncorenlp')
 
