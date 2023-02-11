@@ -13,13 +13,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import vn.pipeline.Utils;
+
 public class PosTagger {
     private static PosTagger posTagger = null;
     private MorphTagger tagger;
     public final static Logger LOGGER = Logger.getLogger(PosTagger.class);
     public PosTagger() throws IOException {
         LOGGER.info("Loading POS Tagging model");
-        String modelPath = System.getProperty("user.dir") + "/models/postagger/vi-tagger";
+        String modelPath = Utils.jarDir + "/models/postagger/vi-tagger";
         if (!new File(modelPath).exists()) throw new IOException("PosTagger: " + modelPath + " is not found!");
         tagger = FileUtils.loadFromFile(modelPath);
 

@@ -22,7 +22,7 @@ public class WordSegmenter {
     public WordSegmenter()
             throws IOException {
         LOGGER.info("Loading Word Segmentation model");
-        String modelPath = System.getProperty("user.dir") + "/models/wordsegmenter/wordsegmenter.rdr";
+        String modelPath = vn.pipeline.Utils.jarDir + "/models/wordsegmenter/wordsegmenter.rdr";
         if (!new File(modelPath).exists())
             throw new IOException("WordSegmenter: " + modelPath + " is not found!");
 

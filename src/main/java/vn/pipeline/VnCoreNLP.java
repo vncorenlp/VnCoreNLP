@@ -14,11 +14,10 @@ import java.util.List;
 
 public class VnCoreNLP {
 
-    private PosTagger posTagger;
-
     public final static Logger LOGGER = Logger.getLogger(Annotation.class);
 
     private WordSegmenter wordSegmenter;
+    private PosTagger posTagger;
     private NerRecognizer nerRecognizer;
     private DependencyParser dependencyParser;
 

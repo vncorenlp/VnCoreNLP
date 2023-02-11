@@ -10,6 +10,7 @@ import edu.emory.mathcs.nlp.decode.NLPDecoder;
 import org.apache.log4j.Logger;
 import vn.pipeline.LexicalInitializer;
 import vn.pipeline.Word;
+import vn.pipeline.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class DependencyParser {
         nlpDecoder = new NLPDecoder();
         List<NLPComponent<NLPNode>> components = new ArrayList();
 
-        String modelPath = System.getProperty("user.dir") + "/models/dep/vi-dep.xz";
+        String modelPath = Utils.jarDir + "/models/dep/vi-dep.xz";
         if (!new File(modelPath).exists()) throw new IOException("DependencyParser: " + modelPath + " is not found!");
         GlobalLexica lexica = LexicalInitializer.initialize(true).initializeLexica();
         if(lexica != null) {

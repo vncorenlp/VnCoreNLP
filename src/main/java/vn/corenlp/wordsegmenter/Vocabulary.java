@@ -7,13 +7,15 @@ import java.io.ObjectInputStream;
 import java.util.HashSet;
 import java.util.Set;
 
+import vn.pipeline.Utils;
+
 @SuppressWarnings("unchecked")
 public class Vocabulary {
     public static Set<String> VN_DICT;
     static {
         VN_DICT = new HashSet<String>();
         try {
-            String vocabPath = System.getProperty("user.dir") + "/models/wordsegmenter/vi-vocab";
+            String vocabPath = Utils.jarDir + "/models/wordsegmenter/vi-vocab";
             if (!new File(vocabPath).exists())
                 throw new IOException("Vocabulary: " + vocabPath + " is not found!");
             //Vocabulary.class.getClassLoader().getResource("wordsegmenter/vi-vocab").getPath()

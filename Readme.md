@@ -21,7 +21,7 @@ If you are looking for light-weight versions, VnCoreNLP's word segmentation and 
 ## Installation <a name="install"></a>
 
 - `Java 1.8+` (Prerequisite)
-- File  `VnCoreNLP-1.1.1.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
+- File  `VnCoreNLP-1.2.jar` (27MB) and folder `models` (115MB) are placed in the same working folder.
 - `Python 3.6+` if using [a Python wrapper of VnCoreNLP](https://github.com/thelinhbkhn2014/VnCoreNLP_Wrapper). To install this wrapper, users have to run the following command:
 
     `$ pip3 install py_vncorenlp` 
@@ -38,7 +38,7 @@ import py_vncorenlp
 # and save them in some local working folder
 py_vncorenlp.download_model(save_dir='/absolute/path/to/vncorenlp')
 
-# Load VnCoreNLP from the local working folder that contains both `VnCoreNLP-1.1.1.jar` and `models` 
+# Load VnCoreNLP from the local working folder that contains both `VnCoreNLP-1.2.jar` and `models` 
 model = py_vncorenlp.VnCoreNLP(save_dir='/absolute/path/to/vncorenlp')
 # Equivalent to: model = py_vncorenlp.VnCoreNLP(annotators=["wseg", "pos", "ner", "parse"], save_dir='/absolute/path/to/vncorenlp')
 
@@ -80,13 +80,13 @@ print(output)
 You can run VnCoreNLP to annotate an input raw text corpus (e.g. a collection of news content) by using following commands:
 
     // To perform word segmentation, POS tagging, NER and then dependency parsing
-    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt
+    $ java -Xmx2g -jar VnCoreNLP-1.2.jar -fin input.txt -fout output.txt
     // To perform word segmentation, POS tagging and then NER
-    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
+    $ java -Xmx2g -jar VnCoreNLP-1.2.jar -fin input.txt -fout output.txt -annotators wseg,pos,ner
     // To perform word segmentation and then POS tagging
-    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg,pos
+    $ java -Xmx2g -jar VnCoreNLP-1.2.jar -fin input.txt -fout output.txt -annotators wseg,pos
     // To perform word segmentation
-    $ java -Xmx2g -jar VnCoreNLP-1.1.1.jar -fin input.txt -fout output.txt -annotators wseg    
+    $ java -Xmx2g -jar VnCoreNLP-1.2.jar -fin input.txt -fout output.txt -annotators wseg    
 
 
 ### Using VnCoreNLP from the API
